@@ -15,7 +15,7 @@ public static class DiExtensions
             conf.AddJob<ProcessOutboxMessagesJob>(jobKet).AddTrigger(trigger =>
             {
                 trigger.ForJob(jobKet).WithSimpleSchedule(schedule =>
-                    schedule.WithIntervalInSeconds(10).RepeatForever());
+                    schedule.WithIntervalInSeconds(20).RepeatForever());
             });
         });
 

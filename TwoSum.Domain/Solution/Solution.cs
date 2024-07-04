@@ -31,8 +31,18 @@ public sealed class Solution : AggregateRoot<SolutionId>
 
     public List<SolutionIteration> Iterations { get; private set; }
 
+    public bool IsSolved()
+    {
+        return Status.Value is SolutionStatus.SolutionStatusEnum.Solved;
+    }
+
     public void MoveNext()
     {
+        if (IsSolved())
+        {
+            return;
+        }
+
         if (Nums.Length <= 0)
         {
             Solve();
@@ -44,17 +54,19 @@ public sealed class Solution : AggregateRoot<SolutionId>
             MoveToInProgress();
         }
 
-        SolutionIteration? lastIteration = null;
+        int? lastIterationIndex = null;
 
         if (Iterations.Count > 0)
         {
-            Iterations.Sort();
-            lastIteration = Iterations.LastOrDefault();
+            var iterations = Iterations.Select(x => x.Index).ToList();
+            iterations.Sort();
+            lastIterationIndex = iterations.LastOrDefault();
         }
 
-        int currentIndex = lastIteration is null ? 0 : lastIteration.Index + 1;
+        int currentIndex = !lastIterationIndex.HasValue ? 0 : lastIterationIndex.Value + 1;
 
         SolutionIteration newIteration = SolutionIteration.Create(Guid.NewGuid(), Id, currentIndex);
+        newIteration.MoveToProcessing();
 
         for (int i = 0; i < Nums.Length; i++)
         {
@@ -124,5 +136,6 @@ public sealed class Solution : AggregateRoot<SolutionId>
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 #pragma warning restore CS0628 // New protected member declared in sealed type
     {
+        Iterations = [];
     }
 }

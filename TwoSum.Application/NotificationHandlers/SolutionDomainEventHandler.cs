@@ -18,23 +18,25 @@ public sealed class SolutionDomainEventHandler
     {
         var solution = await _repository.GetSolutionById(notification.SolutionId);
 
-        if (solution is null)
+        if (solution is null || solution.IsSolved())
         {
             return;
         }
 
         solution.MoveNext();
+        await _repository.SaveChanges();
     }
 
     public async Task Handle(NextSolutionIterationRequested notification, CancellationToken cancellationToken)
     {
         var solution = await _repository.GetSolutionById(notification.SolutionId);
 
-        if (solution is null)
+        if (solution is null || solution.IsSolved())
         {
             return;
         }
 
         solution.MoveNext();
+        await _repository.SaveChanges();
     }
 }

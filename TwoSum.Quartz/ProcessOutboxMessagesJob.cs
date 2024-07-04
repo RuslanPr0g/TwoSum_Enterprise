@@ -30,16 +30,27 @@ public class ProcessOutboxMessagesJob : IProcessOutboxMessagesJob
 
         foreach (var message in messages)
         {
-            var domainEvent = JsonConvert.DeserializeObject<IDomainEvent>(message.Content);
-
-            if (domainEvent is null)
+            try
             {
-                continue;
+                var domainEvent = JsonConvert.DeserializeObject<IDomainEvent>(message.Content, new JsonSerializerSettings()
+                {
+                    TypeNameHandling = TypeNameHandling.All,
+                });
+
+                if (domainEvent is null)
+                {
+                    continue;
+                }
+
+                await _publisher.Publish(domainEvent);
+
+                message.ProcessedOnUtc = DateTime.UtcNow;
+                message.Error = string.Empty;
             }
-
-            await _publisher.Publish(domainEvent);
-
-            message.ProcessedOnUtc = DateTime.UtcNow;
+            catch (Exception ex)
+            {
+                message.Error = JsonConvert.SerializeObject(ex);
+            }
         }
 
         await _twoSumContext.SaveChangesAsync();

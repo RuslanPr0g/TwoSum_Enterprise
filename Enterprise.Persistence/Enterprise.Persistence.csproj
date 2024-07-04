@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Enterprise.Domain\Enterprise.Domain.csproj" />
+    <ProjectReference Include="..\TwoSum.Domain\TwoSum.Domain.csproj" />
   </ItemGroup>
 
 </Project>

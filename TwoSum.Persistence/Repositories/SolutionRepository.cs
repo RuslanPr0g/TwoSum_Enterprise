@@ -1,4 +1,5 @@
-﻿using TwoSum.Application.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using TwoSum.Application.Contracts;
 using TwoSum.Domain.Solution;
 using TwoSum.Persistence.Context;
 
@@ -10,7 +11,7 @@ public sealed class SolutionRepository(TwoSumContext ctx) : ISolutionRepository
 
     public async Task<Solution?> GetSolutionById(SolutionId solutionId)
     {
-        return await _ctx.Solutions.FindAsync(solutionId);
+        return await _ctx.Solutions.Include(s => s.Iterations).FirstOrDefaultAsync(s => s.Id == solutionId);
     }
 
     public async Task CreateSolution(Solution solution)
