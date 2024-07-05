@@ -12,5 +12,5 @@ public class ReadSolutionHandler : IRequestHandler<ReadSolutionQuery, ComputedSo
     public ReadSolutionHandler(ISolutionService solutionService) => _solutionService = solutionService;
 
     public async Task<ComputedSolutionResult> Handle(ReadSolutionQuery query, CancellationToken cancellationToken) =>
-        await _solutionService.ProposeSolution(query.Request);
+        await _solutionService.RetrieveSolution(query);
 }

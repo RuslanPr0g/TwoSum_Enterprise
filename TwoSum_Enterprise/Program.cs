@@ -1,6 +1,7 @@
 using TwoSum.Application;
 using TwoSum.Persistence;
 using TwoSum.Quartz;
+using TwoSum.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +15,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationLayer();
 builder.Services.AddPersistenseLayer(builder.Configuration);
 builder.Services.AddJobs(builder.Configuration);
+builder.Services.AddMessaging();
 
 var app = builder.Build();
+
+//app.UseSerilog((context, configuration) =>
+//    configuration.ReadFrom.Configuration(context.Configuration))();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -8,12 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="MassTransit" Version="8.2.3" />
-    <PackageReference Include="Quartz.Extensions.Hosting" Version="3.9.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Enterprise.Quartz\Enterprise.Quartz.csproj" />
-    <ProjectReference Include="..\TwoSum.Persistence\TwoSum.Persistence.csproj" />
+    <ProjectReference Include="..\TwoSum.Application\TwoSum.Application.csproj" />
+    <ProjectReference Include="..\TwoSum.Domain\TwoSum.Domain.csproj" />
   </ItemGroup>
 
 </Project>

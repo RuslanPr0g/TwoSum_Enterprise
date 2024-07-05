@@ -10,12 +10,19 @@ public static class DiExtensions
     {
         serviceDescriptors.AddQuartz(conf =>
         {
-            var jobKet = new JobKey(nameof(ProcessOutboxMessagesJob));
+            var outboxKey = new JobKey(nameof(ProcessOutboxMessagesJob));
+            var clearanceKey = new JobKey(nameof(CleanOutboxJob));
 
-            conf.AddJob<ProcessOutboxMessagesJob>(jobKet).AddTrigger(trigger =>
+            conf.AddJob<ProcessOutboxMessagesJob>(outboxKey).AddTrigger(trigger =>
             {
-                trigger.ForJob(jobKet).WithSimpleSchedule(schedule =>
+                trigger.ForJob(outboxKey).WithSimpleSchedule(schedule =>
                     schedule.WithIntervalInSeconds(20).RepeatForever());
+            });
+
+            conf.AddJob<CleanOutboxJob>(clearanceKey).AddTrigger(trigger =>
+            {
+                trigger.ForJob(clearanceKey).WithSimpleSchedule(schedule =>
+                    schedule.WithIntervalInSeconds(60).RepeatForever());
             });
         });
 
