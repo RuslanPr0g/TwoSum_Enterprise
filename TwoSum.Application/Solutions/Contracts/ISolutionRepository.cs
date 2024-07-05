@@ -1,7 +1,7 @@
 ﻿using Enterprise.Persistence;
 using TwoSum.Domain.Solution;
 
-namespace TwoSum.Application.Contracts;
+namespace TwoSum.Application.Solutions.Contracts;
 
 public interface ISolutionRepository : IRepository
 {

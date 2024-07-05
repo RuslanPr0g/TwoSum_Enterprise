@@ -1,11 +1,12 @@
 ﻿using Enterprise.Application.Generators;
-using Enterprise.Application.Requests;
 using Microsoft.Extensions.Logging;
-using TwoSum.Application.Contracts;
-using TwoSum.Application.Results;
+using TwoSum.Application.Solutions.Contracts;
+using TwoSum.Application.Solutions.Query;
+using TwoSum.Application.Solutions.Requests;
+using TwoSum.Application.Solutions.Results;
 using TwoSum.Domain.Solution;
 
-namespace TwoSum.Application.Services;
+namespace TwoSum.Application.Solutions.Services;
 
 public sealed class SolutionService : ISolutionService
 {
@@ -35,10 +36,22 @@ public sealed class SolutionService : ISolutionService
 
         await _repository.CreateSolution(solution);
         await _repository.SaveChanges();
-        // TODO: add ef core interceptor to publish domain events
 
         _logger.LogInformation("Proposed solution Id is: {0}", solutionId);
 
         return SolutionAddedResult.CreateSuccess(solutionId);
+    }
+
+    public async Task<ComputedSolutionResult> RetrieveSolution(ReadSolutionQuery request)
+    {
+        // TODO: move it to elastic search
+        var solution = await _repository.GetSolutionById(new SolutionId(request.SolutionId));
+
+        if (solution is null)
+        {
+            return ComputedSolutionResult.CreateFail($"Solution by Id was not found {request.SolutionId}");
+        }
+
+        return ComputedSolutionResult.CreateSuccess(solution.RetrieveSolutionAsString());
     }
 }

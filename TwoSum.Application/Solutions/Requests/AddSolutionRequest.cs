@@ -1,4 +1,6 @@
-﻿namespace Enterprise.Application.Requests;
+﻿using Enterprise.Application.Requests;
+
+namespace TwoSum.Application.Solutions.Requests;
 
 public sealed record AddSolutionRequest : IHttpRequest
 {

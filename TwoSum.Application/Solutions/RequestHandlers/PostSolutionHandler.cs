@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using TwoSum.Application.Contracts;
-using TwoSum.Application.Query;
-using TwoSum.Application.Results;
+using TwoSum.Application.Solutions.Contracts;
+using TwoSum.Application.Solutions.Query;
+using TwoSum.Application.Solutions.Results;
 
-namespace TwoSum.Application.RequestHandlers;
+namespace TwoSum.Application.Solutions.RequestHandlers;
 
 public class PostSolutionHandler : IRequestHandler<PostSolutionQuery, SolutionAddedResult>
 {
@@ -11,6 +11,6 @@ public class PostSolutionHandler : IRequestHandler<PostSolutionQuery, SolutionAd
 
     public PostSolutionHandler(ISolutionService solutionService) => _solutionService = solutionService;
 
-    public async Task<SolutionAddedResult> Handle(PostSolutionQuery query, CancellationToken cancellationToken) => 
+    public async Task<SolutionAddedResult> Handle(PostSolutionQuery query, CancellationToken cancellationToken) =>
         await _solutionService.ProposeSolution(query.Request);
 }

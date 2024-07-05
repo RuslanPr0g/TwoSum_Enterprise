@@ -1,6 +1,6 @@
 ﻿using Enterprise.Application.Results;
 
-namespace TwoSum.Application.Results;
+namespace TwoSum.Application.Solutions.Results;
 
 public sealed class SolutionAddedResult : HttpResult
 {

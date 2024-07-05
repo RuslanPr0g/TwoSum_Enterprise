@@ -92,9 +92,21 @@ public sealed class Solution : AggregateRoot<SolutionId>
         }
     }
 
+    public string RetrieveSolutionAsString()
+    {
+        var (I, J, Message, IsSuccess) = RetrieveSolution();
+
+        if (IsSuccess)
+        {
+            return $"I: {I}, J: {J}, nums: {string.Join(',', Nums)}";
+        }
+
+        return Message ?? "Solution cannot be computed due to a technical issue, please contact our support...";
+    }
+
     public (int I, int J, string? Message, bool IsSuccess) RetrieveSolution()
     {
-        if (Iterations.All(x => x.Status.Value == SolutionIterationStatus.SolutionIterationStatusEnum.Finished))
+        if (Iterations.Any(x => x.Status.Value == SolutionIterationStatus.SolutionIterationStatusEnum.Finished))
         {
             var iteration = Iterations.FirstOrDefault(x => x.Result is not null);
 
@@ -107,7 +119,7 @@ public sealed class Solution : AggregateRoot<SolutionId>
             var trI = int.TryParse(indecies[0], out var I);
             var trJ = int.TryParse(indecies[1], out var J);
 
-            if (!trI || trJ)
+            if (!trI || !trJ)
             {
                 return (-1, -1, "No solution found.", false);
             }

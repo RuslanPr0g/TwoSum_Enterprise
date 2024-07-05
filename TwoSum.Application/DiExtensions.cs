@@ -1,8 +1,8 @@
 ﻿using Enterprise.Application.Generators;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using TwoSum.Application.Contracts;
-using TwoSum.Application.Services;
+using TwoSum.Application.Solutions.Contracts;
+using TwoSum.Application.Solutions.Services;
 
 namespace TwoSum.Application;
 

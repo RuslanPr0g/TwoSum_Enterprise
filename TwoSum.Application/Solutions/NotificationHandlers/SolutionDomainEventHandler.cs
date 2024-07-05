@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using TwoSum.Application.Contracts;
+using TwoSum.Application.Solutions.Contracts;
 using TwoSum.Domain.Events;
 
-namespace TwoSum.Application.NotificationHandlers;
+namespace TwoSum.Application.Solutions.NotificationHandlers;
 
-public sealed class SolutionDomainEventHandler 
+public sealed class SolutionDomainEventHandler
     : INotificationHandler<SolutionCreatedDomainEvent>, INotificationHandler<NextSolutionIterationRequested>
 {
     private readonly ISolutionRepository _repository;

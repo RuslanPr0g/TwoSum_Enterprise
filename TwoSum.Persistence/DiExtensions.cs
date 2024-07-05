@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TwoSum.Application.Contracts;
+using TwoSum.Application.Solutions.Contracts;
 using TwoSum.Persistence.Context;
 using TwoSum.Persistence.Repositories;
 
