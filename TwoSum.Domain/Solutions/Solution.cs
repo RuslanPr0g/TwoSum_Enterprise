@@ -105,7 +105,14 @@ public sealed class Solution : AggregateRoot<SolutionId>
 
     public (int I, int J, string? Message, bool IsSuccess) RetrieveSolution()
     {
-        if (Iterations.Any(x => x.Status.Value == SolutionIterationStatus.SolutionIterationStatusEnum.Finished))
+        var atLeastOneFinished = Iterations.Any(x => x.Status.Value == SolutionIterationStatus.SolutionIterationStatusEnum.Finished);
+        
+        if (!atLeastOneFinished && Iterations.Count == Nums.Length)
+        {
+            return (-1, -1, "No solution found.", false);
+        }
+
+        if (atLeastOneFinished)
         {
             var iteration = Iterations.FirstOrDefault(x => x.Result is not null);
 

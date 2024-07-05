@@ -32,7 +32,7 @@ namespace TwoSum.Domain.Tests
             // Arrange
             var id = Guid.NewGuid();
             var nums = new[] { 2, 7, 11, 15 };
-            var target = 9;
+            var target = 18;
             var solution = Solution.Create(id, nums, target);
 
             // Act
@@ -94,7 +94,7 @@ namespace TwoSum.Domain.Tests
             var result = solution.RetrieveSolutionAsString();
 
             // Assert
-            result.Should().Contain("I: 0, J: 1, nums: 2,7,11,15");
+            result.Should().Contain("I: 1, J: 0, nums: 2,7,11,15");
         }
 
         [Fact]
@@ -107,10 +107,10 @@ namespace TwoSum.Domain.Tests
             var solution = Solution.Create(id, nums, target);
 
             // Act
-            solution.MoveNext();
-            solution.MoveNext();
-            solution.MoveNext();
-            solution.MoveNext();
+            while (!solution.IsSolved())
+            {
+                solution.MoveNext();
+            }
             var result = solution.RetrieveSolutionAsString();
 
             // Assert
@@ -123,7 +123,7 @@ namespace TwoSum.Domain.Tests
             // Arrange
             var id = Guid.NewGuid();
             var nums = new[] { 2, 7, 11, 15 };
-            var target = 9;
+            var target = 18;
             var solution = Solution.Create(id, nums, target);
 
             // Act
