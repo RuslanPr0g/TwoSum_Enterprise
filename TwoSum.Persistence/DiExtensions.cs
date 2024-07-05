@@ -24,6 +24,12 @@ public static class DiExtensions
 
         serviceDescriptors.AddScoped<ISolutionRepository, SolutionRepository>();
 
+        using (var serviceScope = serviceDescriptors.BuildServiceProvider().GetRequiredService<IServiceScopeFactory>().CreateScope())
+        {
+            var context = serviceScope.ServiceProvider.GetService<TwoSumContext>();
+            context?.Database.Migrate();
+        }
+
         return serviceDescriptors;
     }
 }

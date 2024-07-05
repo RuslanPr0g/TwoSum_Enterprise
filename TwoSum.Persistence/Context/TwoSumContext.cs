@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TwoSum.Domain.Solution;
+using TwoSum.Domain.Solutions;
 
 namespace TwoSum.Persistence.Context;
 

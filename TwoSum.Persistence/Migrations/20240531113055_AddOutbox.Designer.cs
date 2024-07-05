@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using TwoSum.Domain.Solution;
+using TwoSum.Domain.Solutions;
 using TwoSum.Persistence.Context;
 
 #nullable disable
@@ -54,7 +54,7 @@ namespace TwoSum.Persistence.Migrations
                     b.ToTable("OutboxMessages", (string)null);
                 });
 
-            modelBuilder.Entity("TwoSum.Domain.Solution.Solution", b =>
+            modelBuilder.Entity("TwoSum.Domain.Solutions.Solution", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
@@ -74,7 +74,7 @@ namespace TwoSum.Persistence.Migrations
                     b.ToTable("Solutions", (string)null);
                 });
 
-            modelBuilder.Entity("TwoSum.Domain.Solution.SolutionIteration", b =>
+            modelBuilder.Entity("TwoSum.Domain.Solutions.SolutionIteration", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
@@ -99,9 +99,9 @@ namespace TwoSum.Persistence.Migrations
                     b.ToTable("SolutionIterations", (string)null);
                 });
 
-            modelBuilder.Entity("TwoSum.Domain.Solution.SolutionIteration", b =>
+            modelBuilder.Entity("TwoSum.Domain.Solutions.SolutionIteration", b =>
                 {
-                    b.HasOne("TwoSum.Domain.Solution.Solution", "Solution")
+                    b.HasOne("TwoSum.Domain.Solutions.Solution", "Solution")
                         .WithMany("Iterations")
                         .HasForeignKey("SolutionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -110,7 +110,7 @@ namespace TwoSum.Persistence.Migrations
                     b.Navigation("Solution");
                 });
 
-            modelBuilder.Entity("TwoSum.Domain.Solution.Solution", b =>
+            modelBuilder.Entity("TwoSum.Domain.Solutions.Solution", b =>
                 {
                     b.Navigation("Iterations");
                 });

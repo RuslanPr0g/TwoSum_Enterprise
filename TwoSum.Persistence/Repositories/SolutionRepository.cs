@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TwoSum.Application.Solutions.Contracts;
-using TwoSum.Domain.Solution;
+using TwoSum.Domain.Solutions;
 using TwoSum.Persistence.Context;
 
 namespace TwoSum.Persistence.Repositories;

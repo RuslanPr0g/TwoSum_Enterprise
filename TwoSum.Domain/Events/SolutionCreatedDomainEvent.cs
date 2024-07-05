@@ -1,5 +1,5 @@
 ﻿using Enterprise.Domain;
-using TwoSum.Domain.Solution;
+using TwoSum.Domain.Solutions;
 
 namespace TwoSum.Domain.Events;
 

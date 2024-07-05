@@ -5,7 +5,6 @@ using TwoSum.Application.Solutions.Results;
 
 namespace TwoSum.Application.Solutions.Contracts;
 
-// TODO: Split the system into read and write parts
 public interface ISolutionService : IApplicationService
 {
     Task<ComputedSolutionResult> RetrieveSolution(ReadSolutionQuery request);

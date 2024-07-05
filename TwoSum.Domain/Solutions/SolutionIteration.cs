@@ -1,7 +1,7 @@
 ﻿using Enterprise.Domain;
 using System.Xml.XPath;
 
-namespace TwoSum.Domain.Solution;
+namespace TwoSum.Domain.Solutions;
 
 public sealed class SolutionIteration : Entity<SolutionIterationId>
 {

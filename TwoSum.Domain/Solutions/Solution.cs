@@ -1,9 +1,8 @@
 ﻿using Enterprise.Domain;
 using TwoSum.Domain.Events;
 
-namespace TwoSum.Domain.Solution;
+namespace TwoSum.Domain.Solutions;
 
-// TODO: ADD UNIT TESTS
 public sealed class Solution : AggregateRoot<SolutionId>
 {
     private Solution(SolutionId id, int[] nums, int target)

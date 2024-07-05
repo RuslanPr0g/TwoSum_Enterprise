@@ -4,7 +4,7 @@ using TwoSum.Application.Solutions.Contracts;
 using TwoSum.Application.Solutions.Query;
 using TwoSum.Application.Solutions.Requests;
 using TwoSum.Application.Solutions.Results;
-using TwoSum.Domain.Solution;
+using TwoSum.Domain.Solutions;
 
 namespace TwoSum.Application.Solutions.Services;
 
@@ -44,7 +44,6 @@ public sealed class SolutionService : ISolutionService
 
     public async Task<ComputedSolutionResult> RetrieveSolution(ReadSolutionQuery request)
     {
-        // TODO: move it to elastic search
         var solution = await _repository.GetSolutionById(new SolutionId(request.SolutionId));
 
         if (solution is null)

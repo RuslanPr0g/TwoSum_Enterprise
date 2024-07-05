@@ -1,5 +1,5 @@
 ﻿using Enterprise.Persistence;
-using TwoSum.Domain.Solution;
+using TwoSum.Domain.Solutions;
 
 namespace TwoSum.Application.Solutions.Contracts;
 

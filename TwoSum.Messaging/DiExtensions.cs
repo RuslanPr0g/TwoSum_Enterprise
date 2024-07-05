@@ -10,10 +10,23 @@ public static class DiExtensions
     {
         serviceDescriptors.AddMassTransit(x =>
         {
-            x.AddConsumers(typeof(SolutionDomainEventHandler).Assembly);
+            x.SetKebabCaseEndpointNameFormatter();
+            x.SetInMemorySagaRepositoryProvider();
 
-            x.UsingInMemory((ctx, cfg) =>
+            var asm = typeof(SolutionDomainEventHandler).Assembly;
+
+            x.AddConsumers(asm);
+            x.AddSagaStateMachines(asm);
+            x.AddSagas(asm);
+            x.AddActivities(asm);
+
+            x.UsingRabbitMq((ctx, cfg) =>
             {
+                cfg.Host("localhost", "/", h =>
+                {
+                    h.Username("guest");
+                    h.Password("guest");
+                });
                 cfg.ConfigureEndpoints(ctx);
             });
         });

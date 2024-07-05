@@ -1,7 +1,8 @@
 ﻿using Enterprise.Domain;
-using static TwoSum.Domain.Solution.SolutionIterationStatus;
+using TwoSum.Domain.Exceptions;
+using static TwoSum.Domain.Solutions.SolutionIterationStatus;
 
-namespace TwoSum.Domain.Solution;
+namespace TwoSum.Domain.Solutions;
 
 public sealed class SolutionIterationStatus : IValueObject<SolutionIterationStatusEnum>
 {
@@ -9,7 +10,7 @@ public sealed class SolutionIterationStatus : IValueObject<SolutionIterationStat
     {
         if (!Enum.IsDefined(typeof(SolutionIterationStatusEnum), status))
         {
-            throw new Exception("There is no such status available!"); // TODO: create custom exception
+            throw new InvalidEnumException("There is no such status available!");
         }
 
         Value = status;
