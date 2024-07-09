@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
   result: string = 'not known';
   isSubmitted: boolean = false;
 
-
   nums: string = '';
   target?: number;
 

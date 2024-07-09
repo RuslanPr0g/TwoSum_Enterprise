@@ -10,7 +10,7 @@ export class AppSignalRService {
 
   constructor() {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('https://localhost:5006/realtimehub') // SignalR hub URL
+      .withUrl('https://localhost:5006/realtimehub/') // SignalR hub URL
       .build();
   }
 

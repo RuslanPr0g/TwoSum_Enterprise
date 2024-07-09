@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using TwoSum.Application;
 using TwoSum.Messaging;
 using TwoSum.Messaging.Hubs;
@@ -16,6 +17,23 @@ builder.Services.AddJobs(builder.Configuration);
 builder.Services.AddMessaging();
 
 builder.Services.AddSignalR();
+
+#region  Setup CORS
+
+var corsBuilder = new CorsPolicyBuilder();
+
+//corsBuilder.AllowAnyOrigin(); // For anyone access.
+corsBuilder.WithOrigins(["https://localhost:4002"]); // for a specific url. Don't add a forward slash on the end!
+corsBuilder.AllowAnyHeader();
+//corsBuilder.AllowCredentials();
+corsBuilder.AllowAnyMethod();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("SiteCorsPolicy", corsBuilder.Build());
+});
+
+#endregion
 
 //builder.Services.AddCors(options =>
 //{
@@ -39,11 +57,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(builder =>
-        builder
-        .AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader());
+app.UseCors("SiteCorsPolicy");
 
 app.UseHttpsRedirection();
 
