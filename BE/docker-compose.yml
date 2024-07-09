@@ -1,6 +1,16 @@
 version: '3.4'
 
 services:
+  twosum_ui:
+    image: ${DOCKER_REGISTRY-}twosumui
+    build:
+      context: .
+      dockerfile: ../FE/Dockerfile
+    ports:
+      - "4001:4001"
+    environment:
+      - STYLE=scss
+
   twosum_enterprise:
     image: ${DOCKER_REGISTRY-}twosumenterprise
     build:
