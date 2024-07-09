@@ -16,13 +16,13 @@ public static class DiExtensions
             conf.AddJob<ProcessOutboxMessagesJob>(outboxKey).AddTrigger(trigger =>
             {
                 trigger.ForJob(outboxKey).WithSimpleSchedule(schedule =>
-                    schedule.WithIntervalInSeconds(20).RepeatForever());
+                    schedule.WithIntervalInSeconds(5).RepeatForever());
             });
 
             conf.AddJob<CleanOutboxJob>(clearanceKey).AddTrigger(trigger =>
             {
                 trigger.ForJob(clearanceKey).WithSimpleSchedule(schedule =>
-                    schedule.WithIntervalInSeconds(60).RepeatForever());
+                    schedule.WithIntervalInSeconds(120).RepeatForever());
             });
         });
 
