@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SolutionService } from './services/solution.service';
 import { delay } from 'rxjs';
+import { AppSignalRService } from './services/app-signalr.service';
 
 @Component({
   selector: 'app-root',
@@ -20,9 +21,17 @@ export class AppComponent implements OnInit {
   nums: string = '';
   target?: number;
 
-  constructor(private service: SolutionService) { }
+  constructor(
+    private service: SolutionService, 
+    private signalRService: AppSignalRService
+  ) { }
 
   ngOnInit(): void { 
+    this.signalRService.startConnection().subscribe(() => {
+      this.signalRService.receiveMessage().subscribe((message) => {
+        console.warn("SIGNALR: ", message);
+      });
+    });
   }
 
   submit(): void {

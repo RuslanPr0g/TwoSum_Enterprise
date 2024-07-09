@@ -1,7 +1,8 @@
 using TwoSum.Application;
+using TwoSum.Messaging;
+using TwoSum.Messaging.Hubs;
 using TwoSum.Persistence;
 using TwoSum.Quartz;
-using TwoSum.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,19 @@ builder.Services.AddApplicationLayer();
 builder.Services.AddPersistenseLayer(builder.Configuration);
 builder.Services.AddJobs(builder.Configuration);
 builder.Services.AddMessaging();
+
+builder.Services.AddSignalR();
+
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy(name: "*",
+//                      policy =>
+//                      {
+//                          policy.WithOrigins("http://example.com");
+//                          policy.WithMethods("GET", "POST");
+//                          policy.AllowCredentials();
+//                      });
+//});
 
 var app = builder.Build();
 
@@ -34,6 +48,11 @@ app.UseCors(builder =>
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.MapHub<SolutionHub>("/realtimehub", map =>
+{
+
+});
 
 app.MapControllers();
 

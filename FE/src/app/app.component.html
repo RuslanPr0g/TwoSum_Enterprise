@@ -3,12 +3,10 @@
     <ng-container *ngIf="!isSubmitted">
       <div class="form">
         <div class="form-group">
-          <label for="nums">Provide nums:</label>
           <input type="text" id="nums" [(ngModel)]="nums" class="form-control" placeholder="Enter numbers">
         </div>
   
         <div class="form-group">
-          <label for="target">Provide target:</label>
           <input type="text" id="target" [(ngModel)]="target" class="form-control" placeholder="Enter target">
         </div>
   
@@ -20,7 +18,9 @@
   
     <ng-container *ngIf="isSubmitted" class="form">
       <div class="result">
-        <b>{{ result }}</b>
+        <span>
+          {{ result }}
+        </span>
       </div>
   
       <div class="form-group">

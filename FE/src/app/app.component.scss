@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-$primary-color: #c31010;
+$primary-color: #9b0a0a;
 $secondary-color: #820443;
 $font-family: 'Roboto', sans-serif;
 
 .page {
-    height: 100vh;
-    width: 100vw;
+    overflow: hidden;
+    height: 95vh;
+    width: 95vw;
 
     display: flex;
     justify-content: center;
@@ -13,7 +14,6 @@ $font-family: 'Roboto', sans-serif;
 }
 
 .container {
-    background-color: #634e4e !important;
     max-width: 70%;
     min-width: 70%;
     padding: 20px;
@@ -45,18 +45,23 @@ $font-family: 'Roboto', sans-serif;
 
         .form-control {
             width: 100%;
+            height: 200px;
             padding: 10px;
             border: 1px solid #6b3838;
             border-radius: 4px;
-            font-size: 16px;
+            font-size: 30px;
+            background-color: #6b3838;
+            color: #fff!important;
         }
     }
 
     .btn {
+        width: 100%;
+        height: 200px;
         padding: 10px 20px;
         border: none;
         border-radius: 4px;
-        font-size: 16px;
+        font-size: 50px;
         cursor: pointer;
         transition: background-color 0.3s ease;
 
@@ -80,24 +85,24 @@ $font-family: 'Roboto', sans-serif;
     }
 
     .result {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        height: 150px;
         padding: 20px;
         margin: 20px;
         background: #fff;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
+        font-weight: 800;
+        color: $secondary-color;
+        font-size: 40px;
 
-        p {
-            margin: 0;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        b {
-            display: block;
-            margin-top: 10px;
-            font-size: 20px;
-            color: $primary-color;
+        & span {
+            display: inline;
+            height: 50px;
         }
     }
 }

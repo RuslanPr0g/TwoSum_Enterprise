@@ -6,7 +6,7 @@ using TwoSum.Application.Solutions.Requests;
 namespace TwoSum_Enterprise.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api")]
     public class SolutionController : ControllerBase
     {
         private readonly ILogger<SolutionController> _logger;

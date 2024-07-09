@@ -6,9 +6,9 @@ namespace TwoSum.Messaging;
 
 public static class DiExtensions
 {
-    public static IServiceCollection AddMessaging(this IServiceCollection serviceDescriptors)
+    public static IServiceCollection AddMessaging(this IServiceCollection services)
     {
-        serviceDescriptors.AddMassTransit(x =>
+        services.AddMassTransit(x =>
         {
             x.SetKebabCaseEndpointNameFormatter();
             x.SetInMemorySagaRepositoryProvider();
@@ -31,6 +31,6 @@ public static class DiExtensions
             });
         });
 
-        return serviceDescriptors;
+        return services;
     }
 }
