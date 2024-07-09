@@ -6,13 +6,11 @@ services:
     build:
       context: .
       dockerfile: TwoSum_Enterprise/Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
       - postgresdb
       - rabbitmq
     ports:
-      - "5000:8080"
+      - "5006:443"
 
   postgresdb:
     image: postgres:latest

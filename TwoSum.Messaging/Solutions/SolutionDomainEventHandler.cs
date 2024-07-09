@@ -43,7 +43,6 @@ public sealed class SolutionDomainEventHandler
         {
             _logger.LogInformation("Starting to process event {event}.", typeof(SolutionCreatedDomainEvent));
 
-            var payload = context.GetPayload<SolutionCreatedDomainEvent>();
             var solution = await _repository.GetSolutionById(context.Message.SolutionId);
 
             if (solution is null || solution.IsSolved())
