@@ -1,8 +1,8 @@
 # 🚀 BACKEND
 
-## TwoSum Solution Domain
+## TwoSum Enterprise
 
-Welcome to the **TwoSum Solution Domain** repository! This project leverages **Domain-Driven Design** principles and messaging concepts to elegantly manage the TwoSum problem. 
+Welcome to the **TwoSum Enterprise** repository! This project leverages **Domain-Driven Design** principles and messaging concepts to elegantly solve the TwoSum problem. 
 
 ### 🛠 Key Components:
 
